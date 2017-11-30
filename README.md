@@ -1,2 +1,5 @@
-# transition
-DIY transitions in JavaScript
+
+Transition
+==========
+
+DIY transitions in JavaScript.

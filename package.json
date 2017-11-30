@@ -1,0 +1,32 @@
+{
+	"name": "@ultraq/transition",
+	"version": "1.0.0",
+	"description": "DIY transitions in JavaScript",
+	"author": "Emanuel Rabina <emanuelrabina@gmail.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.dev.xero.com/ultraq/transition.git"
+	},
+	"keywords": [
+		"javascript",
+		"transition"
+	],
+	"module": "Transition.js",
+	"main": "Transition.node.js",
+	"scripts": {
+		"lint": "eslint '**/*.js'",
+		"build": "babel --source-maps true Transition.js --out-file Transition.node.js",
+		"prepublish": "npm run build"
+	},
+	"dependencies": {
+		"bezier-easing": "^2.0.3"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.0",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+		"es6-promise": "^4.1.1",
+		"eslint": "^4.2.0",
+		"eslint-config-ultraq": "^2.0.0"
+	}
+}
