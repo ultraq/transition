@@ -16,8 +16,7 @@
 
 import BezierEasing from 'bezier-easing';
 
-export const LINEAR = BezierEasing(0.00, 0.0, 1.00, 1.0);
-export const EASE   = BezierEasing(0.25, 0.1, 0.25, 1.0);
+const LINEAR = BezierEasing(0.00, 0.00, 1.00, 1.00);
 
 /**
  * Create CSS-like transitions in Javascript.  Used if the thing you want to
@@ -57,10 +56,16 @@ export default class Transition {
 	 */
 	start() {
 
-		const {callback, duration, timingFunction} = this;
+		let {callback, duration, timingFunction} = this;
+		let start = performance.now();
 		return new Promise(resolve => {
-			const start = performance.now();
-			const animationId = requestAnimationFrame(function animation(timestamp) {
+			let animationId = requestAnimationFrame(function animation() {
+
+				// Sometimes the timestamp from the RAF parameter can be *before* the
+				// start time above, so don't use it and instead calculate it for when
+				// this code is hit.
+				let timestamp = performance.now();
+
 				let elapsed = timestamp - start;
 				if (elapsed < duration) {
 					callback(timingFunction(elapsed / duration));
