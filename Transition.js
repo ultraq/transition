@@ -34,7 +34,8 @@ export default class Transition {
 	 * @param {Function} callback
 	 *   A function that is called at every possible frame with a single parameter,
 	 *   a "delta" value between 0.0 and 1.0 to convey at what point the current
-	 *   frame through the transition is up to, based on the timing function.
+	 *   frame through the transition is up to, based on the duration and the
+	 *   timing function.
 	 * @param {Number} duration
 	 *   How long, in milliseconds, the transition should run for.
 	 * @param {BezierEasing} [timingFunction=LINEAR]
