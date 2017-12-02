@@ -2,6 +2,9 @@
 Transition
 ==========
 
+[![npm](https://img.shields.io/npm/v/@ultraq/string-utils.svg?maxAge=3600)](https://www.npmjs.com/package/@ultraq/string-utils)
+[![License](https://img.shields.io/github/license/ultraq/string-utils.svg?maxAge=2592000)](https://github.com/ultraq/string-utils/blob/master/LICENSE.txt)
+
 DIY transitions in JavaScript.
 
 
