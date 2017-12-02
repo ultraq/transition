@@ -1,7 +1,23 @@
+/* 
+ * Copyright 2015, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import BezierEasing from 'bezier-easing';
 
 export const LINEAR = BezierEasing(0.00, 0.0, 1.00, 1.0);
+export const EASE   = BezierEasing(0.25, 0.1, 0.25, 1.0);
 
 /**
  * Create CSS-like transitions in Javascript.  Used if the thing you want to
@@ -43,18 +59,15 @@ export default class Transition {
 
 		const {callback, duration, timingFunction} = this;
 		return new Promise(resolve => {
-			const start = Date.now();
-
-			// TODO: Can't currently use the highResTimestamp parameter because iOS8 :(
-			const animationId = window.requestAnimationFrame(function smoothAnimation() {
-				let time = Date.now() - start;
-				if (time < duration) {
-					let delta = timingFunction(time / duration);
-					callback(delta);
-					window.requestAnimationFrame(smoothAnimation);
+			const start = performance.now();
+			const animationId = requestAnimationFrame(function animation(timestamp) {
+				let elapsed = timestamp - start;
+				if (elapsed < duration) {
+					callback(timingFunction(elapsed / duration));
+					requestAnimationFrame(animation);
 				}
 				else {
-					window.cancelAnimationFrame(animationId);
+					cancelAnimationFrame(animationId);
 					resolve();
 				}
 			});
