@@ -39,7 +39,7 @@ export default class Transition {
 	 *   How long, in milliseconds, the transition should run for.
 	 * @param {BezierEasing} [timingFunction=LINEAR]
 	 *   The easing function used to calculate the delta passed to the transition
-	 *   function, defaults to a linear function if not specified.
+	 *   function.  Defaults to a linear function if not specified.
 	 */
 	constructor(callback, duration, timingFunction = LINEAR) {
 
