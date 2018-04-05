@@ -1,4 +1,5 @@
 /.idea
 /node_modules
 npm-debug.log
-Transition.node.js*
+Transition.cjs.js*
+Transition.es.js*

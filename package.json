@@ -1,6 +1,6 @@
 {
 	"name": "@ultraq/transition",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "DIY transitions in JavaScript",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com>",
 	"repository": {
@@ -11,11 +11,13 @@
 		"javascript",
 		"transition"
 	],
-	"module": "Transition.js",
-	"main": "Transition.node.js",
+	"module": "Transition.es.js",
+	"main": "Transition.cjs.js",
 	"scripts": {
 		"lint": "eslint '**/*.js'",
-		"build": "babel --source-maps true Transition.js --out-file Transition.node.js",
+		"build": "npm run build:cjs && npm run build:es",
+		"build:cjs": "BABEL_ENV=cjs babel Transition.js --out-file Transition.cjs.js --source-maps",
+		"build:es": "BABEL_ENV=es babel Transition.js --out-file Transition.es.js --source-maps",
 		"prepublish": "npm run build"
 	},
 	"dependencies": {
@@ -24,7 +26,7 @@
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
-		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
 		"es6-promise": "^4.1.1",
 		"eslint": "^4.2.0",
 		"eslint-config-ultraq": "^2.0.0"
